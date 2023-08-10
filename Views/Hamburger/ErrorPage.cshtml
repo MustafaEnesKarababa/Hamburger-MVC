@@ -1,0 +1,18 @@
+﻿<p><i>Bilinmeyen bir hata oluştu, ana sayfaya yönlendiriliyorsunuz.</i></p>
+
+@{
+    int redirectDelay = 3000;
+    string redirectUrl = "/hamburger/Index";
+
+    string script = $@"
+<script>
+                setTimeout(function() {{
+                    window.location.href = '{redirectUrl}';
+                }}, {redirectDelay});
+</script>
+        ";
+
+
+
+    @Html.Raw(script)
+}

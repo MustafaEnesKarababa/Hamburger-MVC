@@ -1,0 +1,61 @@
+﻿@model IEnumerable<IdentitySonProje.Entities.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p class="fs-1" style="text-align:center">- Welcome To FoodX -</p>
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.ImageName)*@
+                Image
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                Add To Cart
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="align-middle">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td >
+                    @if (@item.CategoryId == 2)
+                    {
+
+                        <img src="~/ProductImages/@item.ImageName" width="60" height="130">
+                    }
+                    else
+                    {
+                        <img src="~/ProductImages/@item.ImageName" width="90" height="90">
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    <a asp-action="AddCart" asp-route-productId="@item.ProductId" class="btn btn-success"><i class="fa-solid fa-plus"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

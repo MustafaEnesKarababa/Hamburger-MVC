@@ -1,0 +1,60 @@
+﻿@model IEnumerable<IdentitySonProje.Entities.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="">
+
+    <h1>Product List</h1>
+</div>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+    <a asp-controller="Panel" asp-action="Index" class="btn btn-primary">Back To Index</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.ImageName)*@
+                Image
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Name)*@
+                Category Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.ImageName)*@
+                    <img src="~/ProductImages/@item.ImageName" width="120" height="110">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.ProductId">Details</a> |
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ProductId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model IdentitySonProje.Entities.Extra
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>"<i>@Model.Name</i>" Details</h1>
+
+<div>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>@Model.Price ₺</td>
+            </tr>
+            <tr>
+                <th class="align-middle">Image</th>
+                <td><img src="/ExtraImages/@Model.ImageName"></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2" class="text-center">
+                    <a asp-action="Edit" asp-route-id="@Model?.ExtraId" class="btn btn-warning">Edit</a>
+                    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>

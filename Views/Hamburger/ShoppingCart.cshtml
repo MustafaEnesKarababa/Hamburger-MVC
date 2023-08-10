@@ -1,0 +1,58 @@
+﻿@model List<CookieToOdVM>
+
+@{
+    int a = 1;
+}
+
+<form asp-action="ShoppingCart" method="post">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price/Per</th>
+                <th scope ="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CookieToOdVM item in Model)
+            {
+                <tr>
+                    <th scope="row">@a</th>
+                    <td>@item.ProductName</td>
+                    <td>@item.Size.ToString()</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.ProductPrice</td>
+                    <td class="d-flex justify-content-center"><a asp-action="RemoveFromCart" asp-route-cookieId="@item.cookieID" class="btn btn-danger" style="width: 70%">Remove</a></td>
+                </tr>
+                a++;
+
+            }
+            @foreach (CookieToOdVM item in Model)
+            {
+                @foreach (Extra extra in item.Extras)
+                {
+                    <tr>
+                        <th scope="row">@a</th>
+                        <td>@extra.Name</td>
+                        <td>-</td>
+                        <td>@item.Quantity</td>
+                        <td>@extra.Price</td>
+                        <td></td>
+                    </tr>
+                    a++;
+                }
+            }
+            <tr>
+                <th colspan="6" class="text-md-end">
+                    Total Cost @ViewBag.price ₺ <button class="btn btn-primary" type="submit" value="Confirm">Confirm</button>
+                </th>
+            </tr>
+        </tbody>
+        <tfoot>
+            
+        </tfoot>
+    </table>
+</form>

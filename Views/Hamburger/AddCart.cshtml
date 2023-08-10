@@ -1,0 +1,157 @@
+﻿@model OrderDetailVM
+
+@*<div class="container-fluid border">
+
+    <div class="d-flex flex-row mb-3">
+
+        <div class="d-flex flex-column justify-content-baseline align-self-center" style="width: 50%; height: 600px; margin-bottom: 100%;border: 3px solid lime">
+
+            <div>
+                <img class="" src="~/ProductImages/@Model.Product.ImageName" width="90%" height="450px" />
+
+                <br />
+
+                <div class="d-flex flex-column">
+
+                    <h5>Description:</h5>
+                    <p style="width: 80%">lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum</p>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div style="width: 50%; height: 700px; border: 3px solid lime">
+
+            <h1>Ürün Adı: @Model.Product.Name</h1>
+            <br />
+            <h5>Ürün Fiyatı: @Model.Product.Price</h5>
+            <hr />
+
+            <form asp-controller="Hamburger" asp-action="AddCart">
+                <h5>Size:</h5>
+                <input type="hidden" asp-for="@Model.Product.ProductId" />
+                <input type="hidden" asp-for="@Model.Product.Price" />
+                <div class="d-flex justify-content-center" style="width: 50%">
+                    <div class="form-check form-check-inline">
+
+                        <input class="form-check-input" asp-for="@Model.OrderProduct.Size" type="radio" name="inlineRadioOptions" id="inlineRadioSmall" value="1">
+                        <label class="form-check-label" for="inlineRadio1">Small</label>
+
+                    </div>
+
+                    <div class="form-check form-check-inline">
+
+                        <input class="form-check-input" asp-for="@Model.OrderProduct.Size" type="radio" name="inlineRadioOptions" id="inlineRadioMedium" value="2">
+                        <label class="form-check-label" for="inlineRadio2">Medium</label>
+
+                    </div>
+
+                    <div class="form-check form-check-inline">
+
+                        <input class="form-check-input" asp-for="@Model.OrderProduct.Size" type="radio" name="inlineRadioOptions" id="inlineRadioLarge" value="3">
+                        <label class="form-check-label" for="inlineRadio2">Large</label>
+
+                    </div>
+
+                </div>
+
+                <br />
+                <hr />
+
+                <div class="d-flex justify-content-between" style="width: 37%">
+
+                    <h5 style="margin-top: 6px">Quantity: </h5>
+
+                    <input type="number" asp-for="@Model.OrderProduct.Quantity"/>
+
+                </div>
+
+                <br />
+                <hr />
+                <h5>Extras:</h5>
+
+                <div class="d-flex justify-content-between flex-row" style="width: 100%; border: 3px solid black">
+
+                    <select asp-items="@Model.Extras" multiple name="selectedExtras"></select>
+
+                </div>
+
+                <div class="d-flex justify-content-end position-relative">
+
+                    <button class="btn btn-success position-absolute top-100 start-0 translate-middle" type="submit" value="AddCart">Add To Cart</button>
+
+                    <a class="btn btn-outline-success position-absolute top-100 start-10 translate-middle" asp-area="User" asp-controller="Panel" asp-action="Index">Fast Pay</a>
+
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+*@
+<form asp-controller="Hamburger" asp-action="AddCart">
+
+
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="p-2 bd-highlight">
+                <div class="text-center">
+                    <h2>@Model.Product.Name</h2>
+                </div>
+                <div class="text-center">
+                    <img class="" src="~/ProductImages/@Model.Product.ImageName" />
+                    <input type="hidden" asp-for="@Model.Product.ProductId" />
+                    <input type="hidden" asp-for="@Model.Product.Price" />
+                </div>
+            </div>
+        </div>
+        @if (Model.Product.CategoryId != 2)
+        {
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="p-2 bd-highlight">
+                    <div class="form-check form-check-inline text-center">
+
+                        <input class="form-check-input" asp-for="@Model.OrderProduct.Size" type="radio" name="inlineRadioOptions" id="inlineRadioSmall" value="1">
+                        <label class="form-check-label" for="inlineRadio1">Small</label>
+
+                    </div>
+
+                    <div class="form-check form-check-inline text-center">
+
+                        <input class="form-check-input" asp-for="@Model.OrderProduct.Size" type="radio" name="inlineRadioOptions" id="inlineRadioMedium" value="2" checked="checked">
+                        <label class="form-check-label" for="inlineRadio2">Medium</label>
+
+                    </div>
+
+                    <div class="form-check form-check-inline text-center">
+
+                        <input class="form-check-input" asp-for="@Model.OrderProduct.Size" type="radio" name="inlineRadioOptions" id="inlineRadioLarge" value="3">
+                        <label class="form-check-label" for="inlineRadio2">Large</label>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="p-2 bd-highlight">
+                <div class="text-center">
+                </div>
+                <p class="t">Quantity <input type="number" min="1" asp-for="@Model.OrderProduct.Quantity" /></p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="p-2 bd-highlight">
+                <select class="form-select form-select-lg mb-3" asp-items="@Model.Extras" multiple name="selectedExtras" width="100"></select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="p-2 bd-highlight">
+                <button class="btn btn-success " type="submit" value="AddCart">Add To Cart</button>
+            </div>
+        </div>
+
+    </div>
+</form>

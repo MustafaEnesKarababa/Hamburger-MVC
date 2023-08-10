@@ -1,0 +1,42 @@
+﻿@model IdentitySonProje.Entities.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>"@Model.Name" Details</h1>
+
+
+<div>
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>@Model.Price ₺</td>
+            </tr>
+            <tr>
+                <th class="align-middle">Image</th>
+                <td><img src="/ProductImages/@Model.ImageName"></td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>@Model.Category.Name</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2" class="text-center">
+                    <a asp-action="Edit" asp-route-id="@Model?.ProductId" class="btn btn-warning">Edit</a>
+                    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+</div>
